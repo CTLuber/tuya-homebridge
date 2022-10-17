@@ -3,7 +3,6 @@ const TuyaSHOpenAPI = require("./lib/tuyashopenapi");
 const TuyaOpenMQ = require("./lib/tuyamqttapi");
 const OutletAccessory = require('./lib/outlet_accessory');
 const LightAccessory = require('./lib/light_accessory');
-const SwitchAccessory = require('./lib/switch_accessory');
 const SmokeSensorAccessory = require('./lib/smokesensor_accessory');
 const Fanv2Accessory = require('./lib/fanv2_accessory');
 const HeaterAccessory = require('./lib/heater_accessory');
@@ -136,13 +135,6 @@ class TuyaPlatform {
       case 'pc':
         var deviceData = new DataUtil().getSubService(device.status)
         deviceAccessory = new OutletAccessory(this, homebridgeAccessory, device, deviceData);
-        this.accessories.set(uuid, deviceAccessory.homebridgeAccessory);
-        this.deviceAccessories.set(uuid, deviceAccessory);
-        break;
-      case 'kg':
-      case 'tdq':
-        var deviceData = new DataUtil().getSubService(device.status)
-        deviceAccessory = new SwitchAccessory(this, homebridgeAccessory, device, deviceData);
         this.accessories.set(uuid, deviceAccessory.homebridgeAccessory);
         this.deviceAccessories.set(uuid, deviceAccessory);
         break;
